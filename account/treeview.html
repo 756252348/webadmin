@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- basic styles -->
+
+		<link href="../css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/font-awesome.min.css" />
+
+		<!--[if IE 7]>
+		  <link rel="stylesheet" href="../css/font-awesome-ie7.min.css" />
+		<![endif]-->
+
+		<!-- page specific plugin styles -->
+
+		<!-- fonts -->
+
+		<!--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />-->
+
+		<!-- ace styles -->
+
+		<link rel="stylesheet" href="../css/ace.min.css" />
+		<link rel="stylesheet" href="../css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="../css/ace-skins.min.css" />
+
+		<!--[if lte IE 8]>
+		  <link rel="stylesheet" href="../css/ace-ie.min.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+
+		<script src="../js/ace-extra.min.js"></script>
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+		<!--[if lt IE 9]>
+		<script src="../js/html5shiv.js"></script>
+		<script src="../js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				
+
+				<div class="main-content">
+					
+
+					<div class="page-content">
+						<div class="page-header">
+							<h1>
+								Treeview
+								<small>
+									<i class="icon-double-angle-right"></i>
+									with selectable items(single &amp; multiple) and custom icons
+								</small>
+							</h1>
+						</div><!-- /.page-header -->
+
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="widget-box">
+											<div class="widget-header header-color-blue2">
+												<h4 class="lighter smaller">Choose Categories</h4>
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main padding-8">
+													<div id="tree1" class="tree"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-sm-6">
+										<div class="widget-box">
+											<div class="widget-header header-color-green2">
+												<h4 class="lighter smaller">Browse Files</h4>
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main padding-8">
+													<div id="tree2" class="tree"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<script type="text/javascript">
+									var $assets = "assets";//this will be used in fuelux.tree-sampledata.js
+								</script>
+
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+
+				
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+
+		
+        <script src="../js/jquery-2.0.3.min.js"></script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+
+<script src="../js/jquery-1.10.2.min.js"></script>
+<![endif]-->
+
+		<!--[if !IE]> -->
+
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='../js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+		</script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='../js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+</script>
+<![endif]-->
+
+		<script type="text/javascript">
+			if("ontouchend" in document) document.write("<script src='../js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="../js/bootstrap.min.js"></script>
+		<script src="../js/typeahead-bs2.min.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<script src="../js/fuelux/data/fuelux.tree-sampledata.js"></script>
+		<script src="../js/fuelux/fuelux.tree.min.js"></script>
+
+		<!-- ace scripts -->
+
+		<script src="../js/ace-elements.min.js"></script>
+		<script src="../js/ace.min.js"></script>
+
+		<!-- inline scripts related to this page -->
+
+		<script type="text/javascript">
+			jQuery(function($){
+
+		$('#tree1').ace_tree({
+			dataSource: treeDataSource ,
+			multiSelect:true,
+			loadingHTML:'<div class="tree-loading"><i class="icon-refresh icon-spin blue"></i></div>',
+			'open-icon' : 'icon-minus',
+			'close-icon' : 'icon-plus',
+			'selectable' : true,
+			'selected-icon' : 'icon-ok',
+			'unselected-icon' : 'icon-remove'
+		});
+
+		$('#tree2').ace_tree({
+			dataSource: treeDataSource2 ,
+			loadingHTML:'<div class="tree-loading"><i class="icon-refresh icon-spin blue"></i></div>',
+			'open-icon' : 'icon-folder-open',
+			'close-icon' : 'icon-folder-close',
+			'selectable' : false,
+			'selected-icon' : null,
+			'unselected-icon' : null
+		});
+
+
+
+		/**
+		$('#tree1').on('loaded', function (evt, data) {
+		});
+
+		$('#tree1').on('opened', function (evt, data) {
+		});
+
+		$('#tree1').on('closed', function (evt, data) {
+		});
+
+		$('#tree1').on('selected', function (evt, data) {
+		});
+		*/
+});
+		</script>
+	<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
+</body>
+</html>
